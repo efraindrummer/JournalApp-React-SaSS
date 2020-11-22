@@ -1,5 +1,3 @@
-
-
 export const fileUpload = async ( file ) => {
 
     const cloudUrl = 'https://api.cloudinary.com/v1_1/dvldvzm55/upload';
@@ -25,7 +23,5 @@ export const fileUpload = async ( file ) => {
     } catch (err) {
         throw err;
     }
-
-
     // return url de la imagen
 }
