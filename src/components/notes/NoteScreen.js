@@ -1,15 +1,31 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
+import React, { useEffect, useRef } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { activeNote } from '../../actions/notes'
 import { useForm } from '../../hooks/useForm'
 import { NotesAppBar } from './NotesAppBar'
 
 export const NoteScreen = () => {
 
-    const {active: note} = useSelector(state => state.notes)
+    const dispatch = useDispatch()
 
-    const [formValues, handleInputChange] = useForm(note)
+    const {active: note} = useSelector(state => state.notes);
+    const [formValues, handleInputChange, reset] = useForm(note);
+    const {body, title} = formValues;
+    
+    const activeId = useRef(note.id);
 
-    const {body, title} = formValues
+    useEffect(() => {
+        if( note.id !== activeId.current){
+            reset(note)
+            activeId.current = note.id
+        }
+    }, [note, reset])
+
+    useEffect(() => {
+
+        dispatch(activeNote(formValues.id, { ...formValues }));
+
+    }, [formValues, dispatch])
 
     return (
         <div className="notes__main-content">
@@ -21,13 +37,15 @@ export const NoteScreen = () => {
                     placeholder="some aweson title" 
                     className="notes__title-input" 
                     autoComplete="off"
-                    value={body}
+                    name="title"
+                    value={title}
                     onChange={handleInputChange} 
                 />
 
                 <textarea 
                     placeholder="Que paso hoy?" 
                     className="notes__textarea"
+                    name="body"
                     value={body}
                     onChange={handleInputChange}
                 ></textarea>
@@ -37,7 +55,7 @@ export const NoteScreen = () => {
                     &&
                     (<div className="notes__image">
                         <img 
-                            src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__340.jpg" 
+                            src={note.url} 
                             alt="imagen"
                         />
                     </div>)
