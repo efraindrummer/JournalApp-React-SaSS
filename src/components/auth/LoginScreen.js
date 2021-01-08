@@ -57,11 +57,11 @@ export const LoginScreen = () => {
           className="btn btn-primary btn-block"
           disabled={loading}
         >
-          Login
+          Ingresar
         </button>
 
         <div className="auth__social-networks">
-          <p>Login with social networks</p>
+          <p>Inicia con Google</p>
 
           <div className="google-btn" onClick={handleGoogleLogin}>
             <div className="google-icon-wrapper">
@@ -72,13 +72,13 @@ export const LoginScreen = () => {
               />
             </div>
             <p className="btn-text">
-              <b>Sign in with google</b>
+              <b>Inicia sesión con Google</b>
             </p>
           </div>
         </div>
 
         <Link to="/auth/register" className="link">
-          Create new account
+          Crea una cuenta
         </Link>
       </form>
     </>

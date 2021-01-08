@@ -1,6 +1,11 @@
 .auth__main {
     display: flex;
-    background-color: $primary;
+    background: #0f0c29;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #24243e, #302b63, #0f0c29);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     justify-content: center;
     align-items: center;
     margin: 0px;
@@ -10,28 +15,29 @@
 
 .auth__box-container {
     background-color: white;
-    box-shadow: 0px 3px $dark-gray;
-    border-radius: 2px;
+    box-shadow: 0px 3px $white;
+    border-radius: 10px;
     padding: 20px;
-    width: 250px;
+    width: 350px;
 }
 
 .auth__title {
     color: darken($color: $primary, $amount: 20);
-    margin-bottom: 20px;
+    margin-bottom: 50px;
+    font-size: 24px;
 }
 
 .auth__input {
     color: $dark-gray;
     border: 0px;
     border-bottom: 1px solid $light-gray;
-    font-size: 16px;
+    font-size: 20px;
     margin-bottom: 10px;
     height: 20px;
     width: 100%;
     transition: border-bottom .9s ease;
     &:focus {
-        border-bottom: 1px solid $primary;
+        border-bottom: 3px solid $primary;
         outline: none;
     }
 }
